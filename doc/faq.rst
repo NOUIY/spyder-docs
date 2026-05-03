@@ -26,8 +26,7 @@ Installing and updating
 
    If you already installed Spyder on your Windows machine, you do not need to reinstall it on a WSL2-based Linux environment to run your code there.
 
-   Instead, just create a new Conda or venv/virtualenv environment (system Python without a venv **not** recommended), then install Spyder-Kernels into that environment with e.g. ``conda install spyder-kernels``.
-   You must manually install ``ipython_genutils`` with e.g. ``conda install ipython_genutils``.
+   Instead, just create a new Conda or venv/virtualenv environment (using system Python without a venv is **not** recommended), then install Spyder-Kernels into that environment with e.g. ``conda install spyder-kernels``.
 
    .. note::
 
@@ -50,11 +49,11 @@ Installing and updating
    If you run ``exit()`` from Spyder, the kernel running on Linux will be stopped.
 
 
-.. dropdown:: Q: How do I update Spyder using the standalone installers?
+.. dropdown:: Q: How do I update Spyder using the standalone installer?
    :name: update-standalone
 
    An updater is built right into the standalone-installed Spyder, and will check for updates when starting the application and prompt you when one is available.
-   You can also trigger a on-demand check for updates via :menuselection:`Help --> Check for updates`.
+   You can also trigger an on-demand check for updates via :menuselection:`Help --> Check for updates`.
    Simply click through the prompts to confirm and install the update.
 
 
@@ -65,7 +64,7 @@ Installing and updating
 
    .. code-block:: shell
 
-      conda update anaconda
+      conda update anaconda  # ONLY IF USING THE ANACONDA BASE ENVIRONMENT
       conda update spyder
 
    If this results in an error or does not update Spyder to the latest version, try:
@@ -96,7 +95,7 @@ Running Spyder
 .. dropdown:: Q: How do I run Spyder?
    :name: run-spyder
 
-   With Spyder installed standalone (recommended) or via a Conda-based method, it installs a shortcut so you can launch it right from your normal operating system application launcher (the Start menu on Windows, Spotlight/the Applications folder on macOS, or your distro's launcher on Linux).
+   With Spyder installed standalone (recommended) or via a Conda-based method, a shortcut is created so you can run it right from your normal operating system application launcher (the Start menu on Windows, Spotlight/the Applications folder on macOS, or your distro's launcher on Linux).
    Your operating system will typically allow you to pin this shortcut for even quicker access (to the Taskbar on Windows, the Dock on macOS or your distro's quick launcher on Linux).
    If installed via Conda in its own environment, the shortcut will have the environment name in its title, and multiple shortcuts for different Spyder environments may be available.
 
@@ -109,7 +108,11 @@ Running Spyder
 
    Yes!
    With `Binder`_, you can work with a fully functional copy of Spyder that runs right in your web browser.
-   Visit the `Spyder Binder`_ to get started.
+   Visit the `Spyder Binder`_ page to get started.
+
+   .. caution::
+
+      This is a temporary environment, and any code or data you create will be lost once you close your browser tab or navigate away from the page.
 
    .. _Binder: https://mybinder.org/
    .. _Spyder Binder: https://mybinder.org/v2/gh/spyder-ide/binder-environments/spyder-stable?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fspyder-ide%252FSpyder-Workshop%26urlpath%3Ddesktop%252F%26branch%3Dmaster
@@ -124,7 +127,7 @@ Running Spyder
    Spyder works on modern versions of Windows, macOS and Linux (see the table below for recommended versions).
    It typically uses relatively minimal CPU when idle, and 0.5 GB - 1 GB of RAM, depending on how long you've been using it and how many files, projects, panes and consoles you have open.
    It should work on any system with a dual-core or better x64 processor and at least 4 GB of RAM, although 8 GB is *strongly* recommended for best performance when running other applications.
-   The code you run, such as scientific computation and deep learning models, may require additional resources beyond this baseline for Spyder itself.
+   The code you run, such as scientific computations and deep learning models, may require additional resources beyond this baseline for Spyder itself.
 
    .. table::
 
@@ -195,9 +198,10 @@ Using Spyder
 .. dropdown:: Q: How do I get Spyder to work with my existing Python packages/environment?
    :name: using-existing-environment
 
-   To work with an existing environment in Spyder, change the default Python interpreter for new :ref:`panes-console`\s to point to this environment.
+   You can open a new console in an existing Conda or Pyenv environment using the :guilabel:`New console in environment` submenu of the :guilabel:`Consoles` menu or the tab context menu of the :ref:`panes-console` pane.
 
-   To do so, open the :guilabel:`Python interpreter` section of Spyder's preferences (:menuselection:`Tools --> Preferences`, or :menuselection:`Spyder --> Preferences` on macOS).
+   You can manually add other virtual environments not located at standard paths, as well as change the default environment for new :ref:`panes-console`\s, in the :guilabel:`Python interpreter` section of Spyder's Preferences.
+   This can be quickly accessed by clicking the current environment name in Spyder's status bar, then :guilabel:`Change default environment in Preferences...`.
    Here, click the option :guilabel:`Select interpreter` and use the dropdown below to select your preferred environment.
    If it's not listed, see :ref:`the note below <faq-env-not-listed>`.
 
@@ -208,9 +212,11 @@ Using Spyder
 
    .. note::
 
-      If you installed a :ref:`install-conda` to a non-default path, or are using a virtual environment managed by a tool other than ``pyenv``, your environments likely won't be listed.
+      If you installed a :ref:`install-conda` to a non-standard path, or are using a virtual environment managed by a tool other than ``pyenv``, your environments likely won't be listed by default.
+      For the former, you can specify the path to the Conda/Mamba executable under :menuselection:`Conda executable --> Use a custom Conda/Mamba/Micromamba executable` in the :guilabel:`Python interpreter` section of Spyder's Preferences.
+      It is located at :file:`{BASE INSTALL DIRECTORY}/Scripts/conda.exe` on Windows, and :file:`{BASE INSTALL DIRECTORY}/bin/conda` on other platforms.
 
-      Instead, use the text box or the :guilabel:`Select file` button to enter the path to the Python interpreter you want to use.
+      Otherwise, use the text box or the :guilabel:`Select file` button to manually add the path to the Python interpreter you want to use.
       You can find this path by activating the venv or Conda env you want to use in your terminal (Anaconda Prompt on Windows), and running the command:
 
       .. code-block:: shell
@@ -234,7 +240,7 @@ Using Spyder
       :start: 306
 
    If you want to use other packages in Spyder that don't come with our installer, you need to have your own Python distribution installed; we recommend `Miniforge`_ or another Conda-based option.
-   For Spyder to recognize your environments automatically, you should use a Conda-based distribution with its default install path.
+   For Spyder to recognize your environments automatically without manual configuration, you should use a Conda-based distribution with its default install path.
 
    .. _Miniforge: https://conda-forge.org/download/
 
@@ -245,13 +251,14 @@ Using Spyder
 
       conda create -n my-env -c conda-forge spyder-kernels scikit-learn
 
-   Finally, connect Spyder to this ``my-env`` environment by changing Spyder's default Python interpreter, following the instructions in :ref:`the above answer <using-existing-environment>`.
+   Finally, you can open a console in the ``my-env`` environment by selecting it in the :guilabel:`New console in environment` submenu of the :guilabel:`Consoles` menu or the tab context menu of the :ref:`panes-console` pane.
+   You can also change Spyder's default Python interpreter for new consoles following the instructions in :ref:`the above answer <using-existing-environment>`.
 
 
 .. dropdown:: Q: How do I use plugins with Spyder (e.g. Spyder-Notebook, Spyder-Terminal, Spyder-Unittest)?
    :name: using-plugins
 
-   First, you'll currently need to have a non-standalone version of Spyder installed (a built-in graphical plugin manager will be included in Spyder 6.2).
+   First, you currently need to have Spyder installed in your own Conda or virtual environment, not via our standalone installer (this limitation will be removed in Spyder 6.2, which will feature a built-in graphical plugin manager).
    A Conda-based install is strongly recommended; Spyder plugins are available in the ``conda-forge`` conda channel.
    To install one, activate the environment in which you installed Spyder, and type the following on in your system terminal (or Anaconda Prompt on Windows):
 
@@ -320,7 +327,7 @@ Using Spyder
 
    Select the appropriate option in the :guilabel:`Custom configuration` section of the :guilabel:`Configuration per file` dialog under the :guilabel:`Run` menu, or configure global defaults for all files in the :guilabel:`Run` pane of Spyder's :guilabel:`Preferences`.
 
-   If you want to save and quickly switch between multiple groups of settings, you can save them to separate presets by setting a different :guilabel:`Name` under :guilabel:`Configuration properties`.
+   If you want to quickly switch between multiple groups of settings, you can save them to separate presets by setting a different :guilabel:`Name` under :guilabel:`Configuration properties`.
 
    .. image:: /images/faq/faq-run-options.png
       :alt: Spyder showing run configuration options
@@ -330,7 +337,7 @@ Using Spyder
    :name: using-external-terminal
 
    As of Spyder 6, there is now a dedicated :guilabel:`Run in external terminal` item in the :guilabel:`Run` menu to do just that.
-   You can also now set separate run configuration options for an external terminal versus the built-in :ref:`panes-console`, per-file by selecting the :guilabel:`Runner` to configure, locally in the :guilabel:`Run configuration per file` dialog and globally in the :guilabel:`Run` pane in Spyder's :guilabel:`Preferences`.
+   You can also now set separate external terminal-specific run configuration options for the current file by selecting the corresponding :guilabel:`Runner` in the :guilabel:`Run configuration per file` dialog, and for all files in the :guilabel:`Run` entry in Spyder's :guilabel:`Preferences`.
 
 
 .. dropdown:: Q: How do I change the syntax highlighting theme in the Editor?
@@ -413,9 +420,9 @@ About Spyder
 
    If you installed Spyder via any method other than the Anaconda or Miniconda distributions, or install it from the ``conda-forge`` channel with those two distributions, you are not affected by any restrictions.
 
-   If you use a copy of Spyder installed by default with the Anaconda distribution, or installed from the ``defaults``/``anaconda`` channel with the Anaconda or Miniconda distributions, Anaconda's `Terms of Service`_ have restrictions on larger (>200 employee) for-profit enterprises using Anaconda on a large scale.
+   If you use a copy of Spyder installed by default with the Anaconda distribution, or installed from the ``defaults``/``anaconda`` channel, Anaconda's `Terms of Service`_ have restrictions on larger (>200 employee) for-profit enterprises on a large scale.
    However, these terms only apply to the package infrastructure (the full Anaconda distribution and the ``defaults`` conda channel).
-   Instead, you can simply download the similar `Miniforge`_ distribution, which is 100% open source and nearly identical to Miniconda (and only different from Anaconda in that it does not bundling the Python packages installed by default in the Anaconda ``base`` environment, which we recommend you avoid using anyway given any problems here can break your whole installation).
+   Instead, you can simply download the similar `Miniforge`_ distribution, which is 100% open source and nearly identical to Miniconda (and only different from Anaconda in that it does not bundle the Python packages installed by default in the Anaconda ``base`` environment, which we recommend you avoid using anyway given any problems in it can break your whole installation).
    Then, simply install the packages you need (including Spyder, if you aren't using our recommended :ref:`install-standalone`) with ``conda`` as you usually do.
    Miniforge will automatically use the community-maintained Conda-Forge repository, which has a much wider variety of packages and is generally more up to date than the Anaconda equivalent, in addition to being free of any commercial restrictions.
    For more, see our :ref:`install-guide`.
