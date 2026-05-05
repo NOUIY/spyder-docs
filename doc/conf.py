@@ -302,14 +302,16 @@ texinfo_documents = [
 
 linkcheck_ignore = [
     # Virtual fragment ids
-    r"https://(www\.)?github\.com/.+/compare/.+#diff-.+",
+    r"https://(www\.)?github\.com/.+/.+/compare/.+#diff-.+",
+    r"https://(www\.)?github\.com/.+/.+/blob/.+/.+\.(md|rst)#.+",
     # Flaky
-    r"https://(www\.)?packages\.gentoo\.org/?.*",
-    r"https://(www\.)?software\.opensuse\.org/?.*",
-    r"https://(www\.)?packages\.ubuntu\.com/?.*",
-    r"https://(www\.)?github\.com/.+/commit/.+",
     r"https://(www\.)?figshare\.com/?.*",
+    r"https://(www\.)?github\.com/.+/commit/.+",
     r"https://(www\.)?opencollective\.(org|com)/?.*",
+    r"https://(www\.)?packages\.gentoo\.org/?.*",
+    r"https://(www\.)?packages\.ubuntu\.com/?.*",
+    r"https://(www\.)?ports\.macports\.org/port/.+/?",
+    r"https://(www\.)?software\.opensuse\.org/?.*",
     # Blocks GitHub Actions
     r"https://(www\.)?guru99\.com/?.*",
     r"https://(www\.)?(\w+\.)?reddit\.com/?.*",
