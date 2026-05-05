@@ -84,7 +84,7 @@ To check the names of these modules, see the list in the `Python standard librar
 Completion/help not working
 ===========================
 
-To provide code completions, help and real-time analysis in the Editor, Spyder uses the Python LSP Server (PyLSP), an implementation of the Language Server Protocol specification used by VSCode, Atom and other popular editors/IDEs.
+To provide code completions, help and real-time analysis in the Editor, Spyder uses the Python LSP Server (PyLSP), an implementation of the same Language Server Protocol specification supported by VSCode, Neovim and other popular editors/IDEs.
 Most help and completion issues lie outside of Spyder's control, and are either limitations with PyLSP or the code that is being introspected, but some can be worked around.
 
 
@@ -150,13 +150,13 @@ Plugin Problems
 Plugin does not work at all
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you have installed a Spyder plugin, but you can't see it, go to the :guilabel:`Panes` submenu of the :guilabel:`View` menu and select the plugin's name, which should make it visible if it contains a standalone pane.
-If you don't see the plugin there, select the :guilabel:`Plugins` pane under Spyder's :guilabel:`Preferences` and see if it is listed there.
+If you have installed a Spyder plugin, but you can't see it, go to the :guilabel:`Panes` submenu of the :guilabel:`Window` menu and select the plugin's name, which should make it visible if it contains a standalone pane.
+If you don't see the plugin there, select the :guilabel:`Plugins` section under Spyder's :guilabel:`Preferences` and see if it is listed there.
 
 .. image:: /images/common-illnesses/common-illnesses-plugins.png
    :alt: Dependencies dialog showing Unittest plugin
 
-If the plugin with the problem is not listed in the :guilabel:`Plugins` Preferences pane, check that you installed it in the same environment as Spyder.
+If the plugin with the problem is not listed in the :guilabel:`Plugins` Preferences section, check that you installed it in the same environment as Spyder.
 If you have, then the problem may well be caused by a dependency issue.
 Test whether you can import the plug-in manually by opening a Python console in the same environment as Spyder and typing, for instance, ``import spyder_unittest`` to test the Spyder-Unittest plug-in; this command should run without errors.
 

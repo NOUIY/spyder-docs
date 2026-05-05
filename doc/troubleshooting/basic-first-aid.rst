@@ -17,7 +17,7 @@ Recommended troubleshooting steps
 #. **Restart Spyder**, and try what you were doing before again.
 
 #. **Upgrade Spyder** to the latest release, and you might find your issue is resolved (along with new features, enhancements, and other bug fixes).
-   Patch releases come out every month or two, so unless you've updated recently, there is a good chance your version isn't the latest.
+   Bugfix releases come out every month or two, so unless you've updated recently, there is a good chance your version isn't the latest.
    You can find out with the :guilabel:`Check for updates` command under the :guilabel:`Help` menu.
 
    .. image:: /images/basic-first-aid/basic-first-aid-updates.png
@@ -27,7 +27,7 @@ Recommended troubleshooting steps
    If using an older version of Spyder or a non-standalone build (e.g. installed with Pip or Conda), we recommend downloading and running our latest :ref:`install-standalone`.
 
    To perform the update with Conda, see the FAQ :ref:`update-conda`; to update with Pip use ``pip install --ugprade spyder``.
-   If that still doesn't work, we recommend update Spyder's dependencies and environment, either by installing the latest version of your Conda distribution, or with the relevant "update all" command in your terminal (or Anaconda Prompt on Windows).
+   If that still doesn't work, we recommend updating Spyder's dependencies and environment, either by installing the latest version of Anaconda/Miniconda/Miniforge, or with the relevant "update all" command in your terminal (or Anaconda Prompt on Windows).
 
    To get the latest stable version of everything using Conda, you can run:
 
@@ -57,7 +57,7 @@ Recommended troubleshooting steps
 
 #. **Try reinstalling Spyder** via our :ref:`install-standalone` (recommended), or in a fresh Conda/virtual environment, and see if the issue reoccurs.
 
-If using Conda to install Spyder (only recommended for advanced users needing plugin support), in your system terminal (or Anaconda Prompt on Windows), run the following commands to create an a fresh, clean environment and start Spyder in it:
+If using Conda to install Spyder (only recommended for advanced users needing plugin support), in your system terminal (or Anaconda Prompt on Windows), run the following commands to create a clean environment and start Spyder in it:
 
 .. code-block:: shell
 
@@ -88,13 +88,14 @@ If none of the previous steps solve your issue, you should do a full uninstall o
 For Spyder's standalone installers, the uninstall mechanism varies depending on your operating system.
 On Windows, it can be removed via the entry under :guilabel:`Add or remove programs`.
 
-For Anaconda/Miniconda follow all the steps under `Anaconda uninstall guide`_/`Miniconda uninstall guide`_, or for Miniforge follow the `Miniforge uninstall instructions`_ on macOS/Linux or remove it from :guilabel:`Add or remove programs` on Windows.
+For Anaconda/Miniconda, follow all the steps under `Anaconda uninstall guide`_/`Miniconda uninstall guide`_.
+For Miniforge, follow the `Miniforge uninstall instructions`_ on macOS/Linux or remove it from :guilabel:`Add or remove programs` on Windows.
 Then, delete the Anaconda/Miniconda/Miniforge directory wherever it was originally installed, and (on Windows) remove the :file:`%appdata%/python` directory if it exists.
 
 .. image:: /images/basic-first-aid/basic-first-aid-app-data.gif
    :alt: Deleting AppData/python directory
 
-Then, do a clean install of the latest version of our :ref:`install-standalone`, which is how we recommend you install Spyder and keep it up to date.
+Finally, do a clean install of the latest version of our :ref:`install-standalone`, which is how we recommend you install Spyder and keep it up to date.
 
 .. important::
 
@@ -127,13 +128,13 @@ If you manage to isolate the bug, report it to the last one it *doesn't* work in
    .. image:: /images/basic-first-aid/basic-first-aid-qtconsole.png
       :alt: Anaconda navigator showing qtconsole
 
-   QtConsole is the GUI console backend Spyder depends on to run its code, so most issues involving Spyder's :ref:`panes-console` are actually something with QtConsole instead, and can be reported to the `QtConsole issue tracker`_.
+   QtConsole is the GUI console backend Spyder depends on to run its code, so most issues involving Spyder's :ref:`panes-console` usually have something to do with QtConsole instead, and can be reported to the `QtConsole issue tracker`_.
 
 #. **An IPython command line shell**, launched with e.g. ``ipython`` from system terminal (Anaconda Prompt, on Windows).
    Reproducible bugs can be reported to the `IPython issue tracker`_, though make sure to read their guidelines and docs first.
 
 #. **A standard Python interpreter**, either run as a script file with ``python path/to/your/file.py`` or launched interactively with ``python`` from your system terminal (Anaconda Prompt, on Windows).
-   While it is not impossible that you've found Python bug, it is much more likely to be an issue with the code itself or a package you are using, so your best sources are the `Python docs`_ and the other resources listed above.
+   While it is not impossible that you've found a Python bug, it is much more likely to be an issue with the code itself or a package you are using, so your best sources are the `Python docs`_ and the other resources listed above.
 
 .. _QtConsole issue tracker: https://github.com/jupyter/qtconsole/issues/
 .. _IPython issue tracker: https://github.com/ipython/ipython/issues
